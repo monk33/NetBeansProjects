@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 import java.io.*;
 
 public class NumGUI extends javax.swing.JFrame {
- 
-   static int i;
+    
+    int i = 0;
     
     ResourceBundle message;
     ResourceBundle messageList[];
@@ -23,42 +23,33 @@ public class NumGUI extends javax.swing.JFrame {
     private void init(){
         setVisible(true);        
         setTitle("CS530 Assign9");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        if ((i==5) || (i==4) || (i==3) || (i==2) || (i==1)) {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FlagOne.setVisible(false);
+        flagTwo.setVisible(false);
+        flagThree.setVisible(false);
+        flagFour.setVisible(false);
+        flagFive.setVisible(false);
+        
+        if (messageList[0]!=null){
             FlagOne.setVisible(true);
-        }
-        else {
-           FlagOne.setVisible(false);
-        }
-        
-        if ((i==5) || (i==4) || (i==3) || (i==2)) {
-            flagTwo.setVisible(true);
-        }
-        else {
-           flagTwo.setVisible(false);
-        }
-         
-        if ((i==5) || (i==4) || (i==3)){
-            flagThree.setVisible(true);
-        }
-        else {
-           flagThree.setVisible(false);
-        }
-        
-         if ((i==5) || (i==4)){
-            flagFour.setVisible(true);
-        }
-        else {
-           flagFour.setVisible(false);
-        }
-         
-        if (i==5){
-            flagFive.setVisible(true);
-        }
-        else {
-           flagFive.setVisible(false);
-        }
-       
+            FlagOne.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[0].getString("my.flag"))));
+            if (messageList[1]!=null){
+                flagTwo.setVisible(true);
+                flagTwo.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[1].getString("my.flag"))));
+                if (messageList[2]!=null){
+                    flagThree.setVisible(true);
+                    flagThree.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[2].getString("my.flag"))));
+                    if (messageList[3]!=null){
+                        flagFour.setVisible(true);
+                        flagFour.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[3].getString("my.flag"))));
+                        if (messageList[4]!=null){
+                            flagFive.setVisible(true);
+                            flagFive.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[4].getString("my.flag"))));
+                        }
+                    }
+                }
+            }
+        }//end FlagOne
     }
     
     @SuppressWarnings("unchecked")
@@ -90,7 +81,6 @@ public class NumGUI extends javax.swing.JFrame {
             }
         });
 
-        FlagOne.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         FlagOne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Num9/usa-flags.gif"))); // NOI18N
         FlagOne.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -194,12 +184,12 @@ public class NumGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-       System.exit(0);     
+       System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void FlagOneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FlagOneMouseClicked
         greetLabel.setText(messageList[0].getString("my.hello"));
-        exitButton.setText(messageList[0].getString("my.exit"));        
+        exitButton.setText(messageList[0].getString("my.exit"));
         monumentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[0].getString("my.monument"))));
     }//GEN-LAST:event_FlagOneMouseClicked
 
@@ -228,41 +218,44 @@ public class NumGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_flagFiveMouseClicked
 
     
-    public static void main(String args[]) throws Exception {     
-              
-       int j = 0;
+    public static void main(String args[]) throws Exception {
         
-       File dir = new File("C:\\Users\\Ki\\Documents\\NetBeansProjects\\Assign9\\build\\classes");
+       File dir = new File("C:\\Users\\Doug\\Documents\\GitHub\\NetBeansProjects\\Assign9\\build\\classes");
        FilenameFilter filter = new FilenameFilter() {
        public boolean accept
         (File dir, String name) {          
-            return name.endsWith("properties");
+            return name.endsWith(".properties");
         }
        };
         String[] children = dir.list(filter);
       if (children == null) {
-         System.out.println("Either directory does not exist or is not a directory");
+         System.out.println("Either dir does not exist or is not a directory");
+         //Fancy Work: specify directory box enables here.
       } 
       else {
-         for (int i=1; i< children.length; i++) {
-            String filename = children[i]; 
-             j = 0 + i;
-            System.out.println(filename);            
+         for (int i=0; i<children.length; i++) {
+            children[i] = children[i].replace(".properties","");
+            String filename = children[i];
+            System.out.println(filename);
          }
-      }       
-      i = j;   
-      
+      } 
+   
+
         ResourceBundle message = null;
         ResourceBundle messageList[] = new ResourceBundle[5];
         
+        
                 
         try {
+            for (int i=0; i<children.length;i++)
+                messageList[i] = ResourceBundle.getBundle(children[i]);
+            /*
             messageList[0] = ResourceBundle.getBundle ("resource_en_US");
             messageList[1] = ResourceBundle.getBundle ("resource_de_DE");
             messageList[2] = ResourceBundle.getBundle ("resource_hi_IN");
             messageList[3] = ResourceBundle.getBundle ("resource_no_NO");
             messageList[4] = ResourceBundle.getBundle ("resource_it_IT");         
-            
+            */
         }
         catch (MissingResourceException mre) {
             mre.printStackTrace();
