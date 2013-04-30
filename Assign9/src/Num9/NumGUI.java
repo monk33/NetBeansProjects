@@ -3,6 +3,7 @@ package Num9;
 
 import java.util.*;
 import javax.swing.JFrame;
+import java.io.*;
 
 public class NumGUI extends javax.swing.JFrame {
     
@@ -16,14 +17,14 @@ public class NumGUI extends javax.swing.JFrame {
         this.message = message;
         initComponents();
         init();        
-    }       
+    }      
    
 
     private void init(){
         setVisible(true);        
         setTitle("CS530 Assign9");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        if (i == 0){
+        if ( i == 0){
             FlagOne.setVisible(true);
         }
         else {
@@ -109,18 +110,17 @@ public class NumGUI extends javax.swing.JFrame {
                     .addComponent(flagThree, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(flagFour, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(flagFive, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(67, 67, 67)
+                        .addGap(69, 69, 69)
                         .addComponent(monumentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(exitButton))
+                        .addGap(131, 131, 131)
+                        .addComponent(greetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(greetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                        .addGap(233, 233, 233)
+                        .addComponent(exitButton)))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,11 +141,11 @@ public class NumGUI extends javax.swing.JFrame {
                         .addComponent(flagFour, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(exitButton))
-                    .addGroup(jPanelLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(flagFive, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(flagFive, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(exitButton)))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
@@ -199,16 +199,36 @@ public class NumGUI extends javax.swing.JFrame {
 
     
     public static void main(String args[]) throws Exception {
+        
+       File dir = new File("C:\\Users\\Ki\\Documents\\NetBeansProjects\\Assign9\\build\\classes");
+       FilenameFilter filter = new FilenameFilter() {
+       public boolean accept
+        (File dir, String name) {          
+            return name.startsWith("r");
+        }
+       };
+        String[] children = dir.list(filter);
+      if (children == null) {
+         System.out.println("Either dir does not exist or is not a directory");
+      } 
+      else {
+         for (int i=1; i< children.length; i++) {
+            String filename = children[i];            
+            System.out.println(filename);
+         }
+      } 
+   
+
         ResourceBundle message = null;
         ResourceBundle messageList[] = new ResourceBundle[5];
+        
                 
         try {
             messageList[0] = ResourceBundle.getBundle ("resource_en_US");
             messageList[1] = ResourceBundle.getBundle ("resource_de_DE");
             messageList[2] = ResourceBundle.getBundle ("resource_hi_IN");
             messageList[3] = ResourceBundle.getBundle ("resource_no_NO");
-            messageList[4] = ResourceBundle.getBundle ("resource_it_IT");
-            
+            messageList[4] = ResourceBundle.getBundle ("resource_it_IT");         
             
         }
         catch (MissingResourceException mre) {
