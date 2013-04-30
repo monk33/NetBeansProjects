@@ -42,6 +42,8 @@ public class NumGUI extends javax.swing.JFrame {
         FlagOne = new javax.swing.JLabel();
         flagTwo = new javax.swing.JLabel();
         flagThree = new javax.swing.JLabel();
+        flagFour = new javax.swing.JLabel();
+        flagFive = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,57 +75,85 @@ public class NumGUI extends javax.swing.JFrame {
         });
 
         flagThree.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Num9/india-flag.gif"))); // NOI18N
+        flagThree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flagThreeMouseClicked(evt);
+            }
+        });
+
+        flagFour.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        flagFour.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Num9/norwayflag.gif"))); // NOI18N
+        flagFour.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flagFourMouseClicked(evt);
+            }
+        });
+
+        flagFive.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        flagFive.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Num9/Italian-flag.gif"))); // NOI18N
+        flagFive.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flagFiveMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(22, 22, 22)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(flagTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(flagThree, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(FlagOne, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(FlagOne, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(flagThree, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(flagFour, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(flagFive, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(monumentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(60, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(greetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(152, 152, 152))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exitButton)
-                .addGap(231, 231, 231))
+                        .addGap(67, 67, 67)
+                        .addComponent(monumentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(exitButton))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(greetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addComponent(greetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(monumentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addComponent(FlagOne, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(flagTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(flagThree, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(flagFour, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(FlagOne, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(flagTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(flagThree, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addComponent(exitButton))
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(greetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(monumentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31)
-                .addComponent(exitButton)
-                .addContainerGap(94, Short.MAX_VALUE))
+                        .addGap(27, 27, 27)
+                        .addComponent(flagFive, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,6 +179,24 @@ public class NumGUI extends javax.swing.JFrame {
        monumentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[1].getString("my.monument"))));       
     }//GEN-LAST:event_flagTwoMouseClicked
 
+    private void flagThreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagThreeMouseClicked
+       greetLabel.setText(messageList[2].getString("my.hello"));
+       exitButton.setText(messageList[2].getString("my.exit"));
+       monumentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[2].getString("my.monument"))));      
+    }//GEN-LAST:event_flagThreeMouseClicked
+
+    private void flagFourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagFourMouseClicked
+       greetLabel.setText(messageList[3].getString("my.hello"));
+       exitButton.setText(messageList[3].getString("my.exit"));
+       monumentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[3].getString("my.monument"))));    
+    }//GEN-LAST:event_flagFourMouseClicked
+
+    private void flagFiveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagFiveMouseClicked
+       greetLabel.setText(messageList[4].getString("my.hello"));
+       exitButton.setText(messageList[4].getString("my.exit"));
+       monumentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[4].getString("my.monument"))));   
+    }//GEN-LAST:event_flagFiveMouseClicked
+
     
     public static void main(String args[]) throws Exception {
         ResourceBundle message = null;
@@ -157,6 +205,10 @@ public class NumGUI extends javax.swing.JFrame {
         try {
             messageList[0] = ResourceBundle.getBundle ("resource_en_US");
             messageList[1] = ResourceBundle.getBundle ("resource_de_DE");
+            messageList[2] = ResourceBundle.getBundle ("resource_hi_IN");
+            messageList[3] = ResourceBundle.getBundle ("resource_no_NO");
+            messageList[4] = ResourceBundle.getBundle ("resource_it_IT");
+            
             
         }
         catch (MissingResourceException mre) {
@@ -186,6 +238,8 @@ public class NumGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FlagOne;
     private javax.swing.JButton exitButton;
+    private javax.swing.JLabel flagFive;
+    private javax.swing.JLabel flagFour;
     private javax.swing.JLabel flagThree;
     private javax.swing.JLabel flagTwo;
     private javax.swing.JLabel greetLabel;
