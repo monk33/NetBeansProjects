@@ -200,20 +200,22 @@ public class NumGUI extends javax.swing.JFrame {
     
     public static void main(String args[]) throws Exception {
         
-       File dir = new File("C:\\Users\\Ki\\Documents\\NetBeansProjects\\Assign9\\build\\classes");
+       File dir = new File("C:\\Users\\Doug\\Documents\\GitHub\\NetBeansProjects\\Assign9\\build\\classes");
        FilenameFilter filter = new FilenameFilter() {
        public boolean accept
         (File dir, String name) {          
-            return name.startsWith("r");
+            return name.endsWith(".properties");
         }
        };
         String[] children = dir.list(filter);
       if (children == null) {
          System.out.println("Either dir does not exist or is not a directory");
+         //Fancy Work: specify directory box enables here.
       } 
       else {
-         for (int i=1; i< children.length; i++) {
-            String filename = children[i];            
+         for (int i=0; i<children.length; i++) {
+            children[i] = children[i].replace(".properties","");
+            String filename = children[i];
             System.out.println(filename);
          }
       } 
@@ -222,14 +224,18 @@ public class NumGUI extends javax.swing.JFrame {
         ResourceBundle message = null;
         ResourceBundle messageList[] = new ResourceBundle[5];
         
+        
                 
         try {
+            for (int i=0; i<children.length;i++)
+                messageList[i] = ResourceBundle.getBundle(children[i]);
+            /*
             messageList[0] = ResourceBundle.getBundle ("resource_en_US");
             messageList[1] = ResourceBundle.getBundle ("resource_de_DE");
             messageList[2] = ResourceBundle.getBundle ("resource_hi_IN");
             messageList[3] = ResourceBundle.getBundle ("resource_no_NO");
             messageList[4] = ResourceBundle.getBundle ("resource_it_IT");         
-            
+            */
         }
         catch (MissingResourceException mre) {
             mre.printStackTrace();
