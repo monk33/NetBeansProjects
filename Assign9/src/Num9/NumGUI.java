@@ -1,27 +1,31 @@
 
 package Num9;
 
-import java.util.*;
+import java.awt.ComponentOrientation;
 import javax.swing.JFrame;
 import java.io.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class NumGUI extends javax.swing.JFrame {
-    
-    int i = 0;
-    
-    ResourceBundle message;
+   
     ResourceBundle messageList[];
+    File dir;
     
-    public NumGUI(ResourceBundle messageList[], ResourceBundle message) {
+    public NumGUI() {
+        initComponents();
+        init();        
+    }
+    
+    public NumGUI(ResourceBundle messageList[]) {
         this.messageList = messageList;
-        this.message = message;
         initComponents();
         init();        
     }      
    
 
     private void init(){
-        setVisible(true);        
+        setVisible(true);
         setTitle("CS530 Assign9");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FlagOne.setVisible(false);
@@ -29,6 +33,9 @@ public class NumGUI extends javax.swing.JFrame {
         flagThree.setVisible(false);
         flagFour.setVisible(false);
         flagFive.setVisible(false);
+        
+        dir=new File(pathInput.getText());
+        messageList = loadResourceFiles(dir);
         
         if (messageList[0]!=null){
             FlagOne.setVisible(true);
@@ -50,6 +57,10 @@ public class NumGUI extends javax.swing.JFrame {
                 }
             }
         }//end FlagOne
+        else{
+            dir=new File(pathInput.getText());
+            messageList = loadResourceFiles(dir);
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -65,6 +76,9 @@ public class NumGUI extends javax.swing.JFrame {
         flagThree = new javax.swing.JLabel();
         flagFour = new javax.swing.JLabel();
         flagFive = new javax.swing.JLabel();
+        pathInput = new javax.swing.JTextField();
+        refresh = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +96,8 @@ public class NumGUI extends javax.swing.JFrame {
         });
 
         FlagOne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Num9/usa-flags.gif"))); // NOI18N
+        FlagOne.setName(""); // NOI18N
+        FlagOne.setPreferredSize(new java.awt.Dimension(200, 120));
         FlagOne.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 FlagOneMouseClicked(evt);
@@ -118,55 +134,85 @@ public class NumGUI extends javax.swing.JFrame {
             }
         });
 
+        pathInput.setText("C:\\Users\\Doug\\Documents\\GitHub\\NetBeansProjects\\Assign9\\build\\classes");
+
+        refresh.setText("Refresh");
+        refresh.setToolTipText("");
+        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refreshMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setText("Path:");
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(flagTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FlagOne, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(flagThree, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(flagFour, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(flagFive, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(FlagOne, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(flagTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(flagFour, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(flagThree, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(flagFive, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(69, 69, 69)
+                        .addGap(66, 66, 66)
                         .addComponent(monumentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(greetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(230, 230, 230)
+                        .addComponent(exitButton))
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(233, 233, 233)
-                        .addComponent(exitButton)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                        .addGap(128, 128, 128)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelLayout.createSequentialGroup()
+                                .addGap(0, 36, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pathInput, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelLayout.createSequentialGroup()
+                                .addComponent(greetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(refresh)))))
+                .addGap(31, 31, 31))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addComponent(greetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(FlagOne, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(monumentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(flagTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(flagThree, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(flagFour, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11))
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addComponent(FlagOne, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(flagTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(flagThree, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(flagFour, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pathInput, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                                .addComponent(greetLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(monumentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelLayout.createSequentialGroup()
+                                .addComponent(refresh)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(48, 48, 48)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(flagFive, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(exitButton)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                    .addComponent(exitButton)
+                    .addComponent(flagFive, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,69 +263,42 @@ public class NumGUI extends javax.swing.JFrame {
        monumentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[4].getString("my.monument"))));   
     }//GEN-LAST:event_flagFiveMouseClicked
 
-    
-    public static void main(String args[]) throws Exception {
+    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
+        dir=new File(pathInput.getText());
         
-       File dir = new File("C:\\Users\\Doug\\Documents\\GitHub\\NetBeansProjects\\Assign9\\build\\classes");
-       FilenameFilter filter = new FilenameFilter() {
-       public boolean accept
-        (File dir, String name) {          
-            return name.endsWith(".properties");
-        }
-       };
-        String[] children = dir.list(filter);
-      if (children == null) {
-         System.out.println("Either dir does not exist or is not a directory");
-         //Fancy Work: specify directory box enables here.
-      } 
-      else {
-         for (int i=0; i<children.length; i++) {
-            children[i] = children[i].replace(".properties","");
-            String filename = children[i];
-            System.out.println(filename);
+        init();
+    }//GEN-LAST:event_refreshMouseClicked
+    
+    public static ResourceBundle[] loadResourceFiles(File dir) {
+        FilenameFilter filter = new FilenameFilter() {
+        public boolean accept
+         (File dir, String name) {          
+             return name.endsWith(".properties");
          }
-      } 
+        };
+         String[] children = dir.list(filter);
+        if (children == null) {
+           System.out.println("Either dir does not exist or is not a directory");
+          } 
+        else {
+           for (int i=0; i<children.length; i++) {
+              children[i] = children[i].replace(".properties","");
+              String filename = children[i];
+              System.out.println(filename);
+           }
+        } 
    
-
-        ResourceBundle message = null;
         ResourceBundle messageList[] = new ResourceBundle[5];
         
-        
-                
-        try {
+        if(children!=null)
             for (int i=0; i<children.length;i++)
                 messageList[i] = ResourceBundle.getBundle(children[i]);
-            /*
-            messageList[0] = ResourceBundle.getBundle ("resource_en_US");
-            messageList[1] = ResourceBundle.getBundle ("resource_de_DE");
-            messageList[2] = ResourceBundle.getBundle ("resource_hi_IN");
-            messageList[3] = ResourceBundle.getBundle ("resource_no_NO");
-            messageList[4] = ResourceBundle.getBundle ("resource_it_IT");         
-            */
-        }
-        catch (MissingResourceException mre) {
-            mre.printStackTrace();
-            System.err.println("resource not found");            
-        }
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NumGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NumGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NumGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NumGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        
-        new NumGUI(messageList, message);
-       
+  
+        return messageList;
+    }
+    
+    public static void main(String args[]) throws Exception {
+        new NumGUI();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FlagOne;
@@ -289,7 +308,10 @@ public class NumGUI extends javax.swing.JFrame {
     private javax.swing.JLabel flagThree;
     private javax.swing.JLabel flagTwo;
     private javax.swing.JLabel greetLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel;
     private javax.swing.JLabel monumentLabel;
+    private javax.swing.JTextField pathInput;
+    private javax.swing.JButton refresh;
     // End of variables declaration//GEN-END:variables
 }
