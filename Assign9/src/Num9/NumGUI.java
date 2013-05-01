@@ -15,20 +15,13 @@ public class NumGUI extends javax.swing.JFrame {
     public NumGUI() {
         initComponents();
         init();        
-    }
+    } 
     
-    public NumGUI(ResourceBundle messageList[]) {
-        this.messageList = messageList;
-        initComponents();
-        init();        
-    }      
-   
-
     private void init(){
         setVisible(true);
         setTitle("CS530 Assign9");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        FlagOne.setVisible(false);
+        flagOne.setVisible(false);
         flagTwo.setVisible(false);
         flagThree.setVisible(false);
         flagFour.setVisible(false);
@@ -38,8 +31,8 @@ public class NumGUI extends javax.swing.JFrame {
         messageList = loadResourceFiles(dir);
         
         if (messageList[0]!=null){
-            FlagOne.setVisible(true);
-            FlagOne.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[0].getString("my.flag"))));
+            flagOne.setVisible(true);
+            flagOne.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[0].getString("my.flag"))));
             if (messageList[1]!=null){
                 flagTwo.setVisible(true);
                 flagTwo.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[1].getString("my.flag"))));
@@ -71,7 +64,7 @@ public class NumGUI extends javax.swing.JFrame {
         greetLabel = new javax.swing.JLabel();
         monumentLabel = new javax.swing.JLabel();
         exitButton = new javax.swing.JButton();
-        FlagOne = new javax.swing.JLabel();
+        flagOne = new javax.swing.JLabel();
         flagTwo = new javax.swing.JLabel();
         flagThree = new javax.swing.JLabel();
         flagFour = new javax.swing.JLabel();
@@ -95,12 +88,12 @@ public class NumGUI extends javax.swing.JFrame {
             }
         });
 
-        FlagOne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Num9/usa-flags.gif"))); // NOI18N
-        FlagOne.setName(""); // NOI18N
-        FlagOne.setPreferredSize(new java.awt.Dimension(200, 120));
-        FlagOne.addMouseListener(new java.awt.event.MouseAdapter() {
+        flagOne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Num9/usa-flags.gif"))); // NOI18N
+        flagOne.setName(""); // NOI18N
+        flagOne.setPreferredSize(new java.awt.Dimension(200, 120));
+        flagOne.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                FlagOneMouseClicked(evt);
+                flagOneMouseClicked(evt);
             }
         });
 
@@ -153,7 +146,7 @@ public class NumGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(FlagOne, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(flagOne, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(flagTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(flagFour, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(flagThree, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,7 +178,7 @@ public class NumGUI extends javax.swing.JFrame {
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(FlagOne, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(flagOne, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(flagTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
@@ -233,33 +226,53 @@ public class NumGUI extends javax.swing.JFrame {
        System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
 
-    private void FlagOneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FlagOneMouseClicked
+    private void flagOneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagOneMouseClicked
         greetLabel.setText(messageList[0].getString("my.hello"));
         exitButton.setText(messageList[0].getString("my.exit"));
+        if(messageList[0].getString("my.rtl").equals("true"))
+            jPanel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        else
+            jPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         monumentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[0].getString("my.monument"))));
-    }//GEN-LAST:event_FlagOneMouseClicked
+    }//GEN-LAST:event_flagOneMouseClicked
 
     private void flagTwoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagTwoMouseClicked
        greetLabel.setText(messageList[1].getString("my.hello"));
        exitButton.setText(messageList[1].getString("my.exit"));
+       if(messageList[1].getString("my.rtl").equals("true"))
+            jPanel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        else
+            jPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
        monumentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[1].getString("my.monument"))));       
     }//GEN-LAST:event_flagTwoMouseClicked
 
     private void flagThreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagThreeMouseClicked
        greetLabel.setText(messageList[2].getString("my.hello"));
        exitButton.setText(messageList[2].getString("my.exit"));
+       if(messageList[2].getString("my.rtl").equals("true"))
+            jPanel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        else
+            jPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
        monumentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[2].getString("my.monument"))));      
     }//GEN-LAST:event_flagThreeMouseClicked
 
     private void flagFourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagFourMouseClicked
        greetLabel.setText(messageList[3].getString("my.hello"));
        exitButton.setText(messageList[3].getString("my.exit"));
+       if(messageList[3].getString("my.rtl").equals("true"))
+            jPanel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        else
+            jPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
        monumentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[3].getString("my.monument"))));    
     }//GEN-LAST:event_flagFourMouseClicked
 
     private void flagFiveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagFiveMouseClicked
        greetLabel.setText(messageList[4].getString("my.hello"));
        exitButton.setText(messageList[4].getString("my.exit"));
+       if(messageList[4].getString("my.rtl").equals("true"))
+            jPanel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        else
+            jPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
        monumentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(messageList[4].getString("my.monument"))));   
     }//GEN-LAST:event_flagFiveMouseClicked
 
@@ -271,14 +284,13 @@ public class NumGUI extends javax.swing.JFrame {
     
     public static ResourceBundle[] loadResourceFiles(File dir) {
         FilenameFilter filter = new FilenameFilter() {
-        public boolean accept
-         (File dir, String name) {          
+        public boolean accept(File dir, String name) {          
              return name.endsWith(".properties");
          }
         };
          String[] children = dir.list(filter);
         if (children == null) {
-           System.out.println("Either dir does not exist or is not a directory");
+           System.err.println("Either dir does not exist or is not a directory");
           } 
         else {
            for (int i=0; i<children.length; i++) {
@@ -297,14 +309,14 @@ public class NumGUI extends javax.swing.JFrame {
         return messageList;
     }
     
-    public static void main(String args[]) throws Exception {
+    public static void main(String args[]) {
         new NumGUI();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel FlagOne;
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel flagFive;
     private javax.swing.JLabel flagFour;
+    private javax.swing.JLabel flagOne;
     private javax.swing.JLabel flagThree;
     private javax.swing.JLabel flagTwo;
     private javax.swing.JLabel greetLabel;
